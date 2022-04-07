@@ -52,3 +52,24 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6.8
+
+      - name: Cache bundle
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: bundle-v1-${{ hashFiles('Gemfile.lock') }}
+
+      - name: Run bundle install
+        run: |
+          bundle config --local path vendor/bundle
+          bundle config --local without production
+          bundle install
+
+      - name: Capistrano deploy
+        run: |
+          eval $(ssh-agent)
+          ssh-add ~/.ssh/rails-deploy-webapp
+          bundle exec cap production deploy
+        env:
+          CAP_SERVER: ${{ secrets.TARGET_HOSTNAME }}
+
