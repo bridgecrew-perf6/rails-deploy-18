@@ -3,10 +3,10 @@ lock "~> 3.17.0"
 
 set :application, "rails-deploy"
 set :repo_url, "git@github.com:takahashi1987/rails-deploy.git"
-set :branch, "main"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, "main"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/webapp/#{fetch(:application)}"
