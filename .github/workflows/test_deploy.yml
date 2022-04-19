@@ -73,7 +73,7 @@ jobs:
 
       - name: Set SSH Config
         run: |
-          cat <<EOF> ~/.ssh/config
+          cat << EOF > ~/.ssh/config
           Host rails-deploy-bastion
             StrictHostKeyChecking no
             HostName ${{ secrets.BASTION_HOSTNAME }}
@@ -87,4 +87,4 @@ jobs:
           ssh-add ~/.ssh/rails-deploy-webapp
           bundle exec cap production deploy
         env:
-          CAP_SERVER: rails-deploy-webapp
+          CAP_SERVER: 172.18.3.163
