@@ -87,4 +87,4 @@ jobs:
           ssh-add ~/.ssh/rails-deploy-webapp
           bundle exec cap production deploy
         env:
-          CAP_SERVER: 172.18.3.163
+          CAP_SERVER: rails-deploy-webapp
